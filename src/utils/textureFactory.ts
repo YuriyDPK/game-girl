@@ -110,39 +110,15 @@ export class TextureFactory {
   }
 
   private static drawLocationSpecifics(ctx: CanvasContext, location: LocationDefinition): void {
-    const { worldWidth, groundY, palette, key } = location;
+    const { groundY, palette, key } = location;
 
-    if (key === 'cafe-night' || key === 'apartment') {
+    if (key === 'cafe-night') {
       for (let index = 0; index < 5; index += 1) {
         const x = 260 + index * 250;
         drawSoftLight(ctx, x, groundY - 210, 190, palette.light, 0.55);
         ctx.fillStyle = withAlpha(palette.light, 0.62);
         ctx.fillRect(x - 36, groundY - 250, 72, 112);
       }
-    }
-
-    if (key === 'metro-station') {
-      ctx.fillStyle = withAlpha(palette.light, 0.28);
-      for (let index = 0; index < 9; index += 1) {
-        const x = 120 + index * 210;
-        ctx.fillRect(x, groundY - 310, 130, 16);
-        drawSoftLight(ctx, x + 65, groundY - 300, 150, palette.light, 0.22);
-      }
-    }
-
-    if (key === 'rooftop') {
-      ctx.fillStyle = withAlpha('#000000', 0.25);
-      ctx.fillRect(0, groundY - 55, worldWidth, 55);
-      for (let index = 0; index < 36; index += 1) {
-        ctx.fillStyle = withAlpha(palette.light, Phaser.Math.FloatBetween(0.12, 0.35));
-        ctx.fillRect(Phaser.Math.Between(80, worldWidth - 80), Phaser.Math.Between(260, 470), 5, 5);
-      }
-    }
-
-    if (key === 'snowy-street') {
-      ctx.fillStyle = withAlpha('#e6eef3', 0.5);
-      ctx.fillRect(0, groundY - 10, worldWidth, 70);
-      drawSoftLight(ctx, worldWidth * 0.5, 170, 450, palette.accent, 0.2);
     }
   }
 
